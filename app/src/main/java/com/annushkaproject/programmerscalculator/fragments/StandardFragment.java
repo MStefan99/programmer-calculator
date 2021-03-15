@@ -60,7 +60,7 @@ public class StandardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = getView().findViewById(R.id.inputField);
+        textView = getView().findViewById(R.id.u5h_tekst_viyu);
 
         fillNumberButtons();
         fillOperatorButtons();
@@ -71,17 +71,10 @@ public class StandardFragment extends Fragment {
         setupSignButton();
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
+    @Override public void onSaveInstanceState(@NonNull Bundle outState) { super.onSaveInstanceState(outState);
         InstanceStateUtil.saveInstanceState(outState, calcModel, packageName);
     }
 
-    /**
-     * Sets up the package name for the fragment. It is necessary to call this method before opening the fragment.
-     *
-     * @param packageName Name of the package that will be used by fragment.
-     */
     public void setupFragment(String packageName) {
         this.packageName = packageName;
     }
@@ -102,7 +95,7 @@ public class StandardFragment extends Fragment {
         }
 
         //Adding "." button separately
-        Button button = getView().findViewById(R.id.buttonComma);
+        Button button = getView().findViewById(R.id.button_decimal_point);
         button.setOnClickListener(v -> {
             Button button12 = (Button)v;
             System.out.println(button12.getText().toString());
@@ -132,7 +125,7 @@ public class StandardFragment extends Fragment {
     private void fillOperatorButtons() {
         operatorButtons.add(getView().findViewById(R.id.buttonPlus));
         operatorButtons.add(getView().findViewById(R.id.buttonMinus));
-        operatorButtons.add(getView().findViewById(R.id.buttonDivide));
+        operatorButtons.add(getView().findViewById(R.id.buttonRDivide));
         operatorButtons.add(getView().findViewById(R.id.buttonMultiply));
         operatorButtons.add(getView().findViewById(R.id.buttonPercent));
 

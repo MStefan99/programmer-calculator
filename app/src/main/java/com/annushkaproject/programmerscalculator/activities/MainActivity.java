@@ -22,36 +22,36 @@ import com.annushkaproject.programmerscalculator.utils.SharedPreferencesUtil;
 
 import io.realm.Realm;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         SharedPreferencesUtil prefUtil = new SharedPreferencesUtil(this);
         setTheme(ThemeSetting.getThemeStyleByThemeSetting(prefUtil.loadThemeSetting()));
         super.onCreate(savedInstanceState);
-
         Realm.init(this);
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+//        if (savedInstanceState == null) {
+//            //Open standard fragment when start the app for the first time.
+//            StandardFragment standardFragment = new StandardFragment();
+//            standardFragment.setupFragment(getPackageName());
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
+//            navigationView.setCheckedItem(R.id.nav_standard_mode);
+//        }
         if (savedInstanceState == null) {
-            //Open standard fragment when start the app for the first time.
-            StandardFragment standardFragment = new StandardFragment();
-            standardFragment.setupFragment(getPackageName());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, standardFragment).commit();
-            navigationView.setCheckedItem(R.id.nav_standard_mode);
+            //Open programmer fragment when start the app for the first time.
+            ProgrammerFragment programmer_fragment = new ProgrammerFragment();
+            programmer_fragment.setupFragment(getPackageName());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, programmer_fragment).commit();
+            navigationView.setCheckedItem(R.id.nav_programmer_mode);
         }
     }
 

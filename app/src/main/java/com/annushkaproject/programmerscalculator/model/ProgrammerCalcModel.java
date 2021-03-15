@@ -1,49 +1,20 @@
 package com.annushkaproject.programmerscalculator.model;
-
-import com.annushkaproject.programmerscalculator.model.CalculationModel;
-
 import java.math.BigDecimal;
-
-import static com.annushkaproject.programmerscalculator.model.WordLength.QWORD;
-
+import static com.annushkaproject.programmerscalculator.model.int_size_enum.l8;
 public class ProgrammerCalcModel extends CalculationModel {
-
-    private WordLength wordLength;
-
-    public WordLength getWordLength() {
-        return wordLength;
+    private int_size_enum bytelengthenum;
+    public int_size_enum getBytelengthenum() { return bytelengthenum; }
+    public void setBytelengthenum(int_size_enum bytelengthenum) { this.bytelengthenum = bytelengthenum; }
+    public ProgrammerCalcModel() { this.bytelengthenum = l8; }
+    public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, int_size_enum bytelengthenum) {
+        super(firstValue, operator); this.bytelengthenum = bytelengthenum;
     }
 
-    public void setWordLength(WordLength wordLength) {
-        this.wordLength = wordLength;
+    public ProgrammerCalcModel(BigDecimal firstValue, BigDecimal secondValue, Operator operator, int_size_enum bytelengthenum) {
+        super(firstValue, secondValue, operator); this.bytelengthenum = bytelengthenum;
     }
-
-    public ProgrammerCalcModel() {
-        this.wordLength = QWORD;
-    }
-
-    public ProgrammerCalcModel(BigDecimal firstValue, Operator operator, WordLength wordLength) {
-        super(firstValue, operator);
-        this.wordLength = wordLength;
-    }
-
-    public ProgrammerCalcModel(BigDecimal firstValue, BigDecimal secondValue, Operator operator, WordLength wordLength) {
-        super(firstValue, secondValue, operator);
-        this.wordLength = wordLength;
-    }
-
-    /**
-     * Used set model values based on input text.
-     *
-     * @param text Input text containing value.
-     * @param mode Mode used for calculations.
-     */
-    public void updateValues(String text, Mode mode) {
-        if (this.getOperator() == null) {
-            setFirstValue(Long.parseLong(text, mode.getBase()));
-        } else {
-            setSecondValue(Long.parseLong(text, mode.getBase()));
-        }
+    public void updateValues(String text, mode_enum modeenum) {
+        if (this.getOperator() == null) setFirstValue(Long.parseLong(text, modeenum.getBase())); else setSecondValue(Long.parseLong(text, modeenum.getBase()));
     }
 
 }
